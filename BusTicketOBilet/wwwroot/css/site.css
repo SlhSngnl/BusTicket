@@ -1,0 +1,58 @@
+﻿@font-face {
+    font-family: roboto;
+    src: url(/lib/fonts/Roboto-Medium.ttf);
+}
+
+
+.table td, .table th {
+    border: none;
+}
+
+
+.card-header {
+    background-color: #2F4EB4;
+    height: 72px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.mainCardBody {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#mainCard {
+    width: 335px;
+    height: 568px;
+    background-color: #F3F3F3;
+}
+
+.journeyCard {
+    width: 304px;
+    height: 80px;
+    margin-left: -5px;
+    padding: 5px
+}
+
+.select2-container {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+
+    .select2-container .select2-selection--single {
+        box-sizing: border-box;
+        cursor: pointer;
+        height: 28px;
+        user-select: none;
+        -webkit-user-select: none;
+        display: contents;
+    }
+
+.select2-selection__arrow {
+    display: none;
+}

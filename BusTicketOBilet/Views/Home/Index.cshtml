@@ -1,0 +1,220 @@
+﻿@using BusTicketOBilet.Models
+@model IndexVM
+
+@{
+    ViewData["Title"] = "Bilet Ara";
+
+    @if (TempData["Message"] != null)
+    {
+        <script>
+            alert("@TempData["message"]");
+        </script>
+    }
+}
+
+
+
+<form action="Home/Journey" method="post">
+
+
+    <div class="card">
+
+        <div class="card-header"></div>
+
+
+        <div class="card-body">
+
+            <div class="row" style="background-color:white;border-radius:5%;margin:25px 10px 0 10px">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label">Nereden</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fas fa-map-marker-alt icons"></i>
+                    </div>
+                    <div class="col-10">
+                        @Html.DropDownListFor(x => x.OriginID, Model.OriginLocations)
+                    </div>
+                </div>
+            </div>
+
+            <div class="row exchangeBtnDiv">
+                <div class="col-12">
+                    <button onclick="exchangeLocations()" type="button" class="btn btn-primary exchangeBtn">
+                        <i style="margin-left: -7px;margin-bottom: 7px;" class="fas fa-exchange-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" style="background-color:white;border-radius:5%;margin:0 10px 25px 10px">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="label">Nereye</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fas fa-map-marker-alt icons"></i>
+                    </div>
+                    <div class="col-10">
+                        @Html.DropDownListFor(x => x.DestinationID, Model.DestinationLocations)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="background-color:white;border-radius:5%;margin:10px 5px">
+
+                <div class="row" style="width:100%">
+                    <div class="col-10">
+                        <label class="label"> Tarih </label>
+                    </div>
+                    <div class="col-2">
+                        <button onclick="todaySelect()" class="btn btn-outline-secondary dayBtn" type="button">
+                            Bugün
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row" style="width:100%">
+                    <div class="col-10">
+                        @Html.TextBoxFor(model => model.DepartureDate,Model.DepartureDate.ToString("yyyy-MM-dd"),new { @type = "date", @min=$"{@DateTime.Now.ToString("yyyy-MM-dd")}"})
+                    </div>
+
+                    <div class="col-2">
+                        <button onclick="tomorrowSelect()" class="btn btn-outline-secondary dayBtn" type="button">
+                            Yarın
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button id="SubmitBtn" type="submit" class="btn btn-primary">Bileti Bul</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-footer">
+            <p id="footerText">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blan
+            </p>
+        </div>
+
+    </div>
+        @Html.HiddenFor(x=>x.IPAddress)
+
+</form>
+
+<style>
+
+    .exchangeBtnDiv {
+    position: absolute;
+    left: 80%;
+    top: 20%;
+}
+
+    #SubmitBtn {
+        width: 208px;
+        height: 41px;
+        margin-top: 15px;
+        background-color:#2F4EB4;
+        color:white;
+    }
+
+    .exchangeBtn {
+        width: 28px;
+        height: 28px;
+        border-radius: 100%;
+        transform: rotate(90deg);
+        color: gray;
+        background-color: white;
+        border-color: gray !important;
+    }
+
+    .card {
+        width: 320px;
+        height: 568px;
+        background-color: #FFFFFF;
+        opacity: 100%
+    }
+
+    .card-header {
+        background-color: #2F4EB4;
+        width: 320px;
+        height: 40px;
+        opacity: 100%;
+
+    }
+
+    .card-body {
+        background-color: #F8F8F8;
+        width: 320px;
+        height: 375px;
+        opacity: 100%;
+
+    }
+
+    .card-footer {
+        background-color: white;
+        border: none;
+    }
+
+    #footerText {
+        width: 290px;
+        height: 145px;
+        font-family: roboto;
+        font-size: 12px;
+        text-align: left;
+        overflow-y: scroll;
+        padding: 5px 10px
+    }
+
+    .label {
+        padding-left: 35px;
+        color: #2F4EB4;
+        font-weight: 600
+    }
+
+    .dayBtn {
+        width: 65px;
+        height: 24px;
+        font-size: 12px;
+        margin: 5px -30px;
+        line-height:1px;
+    }
+
+    #OriginID, #DestinationID, #DepartureDate {
+        width: 100%;
+        margin-left: 5px;
+        background: transparent;
+        border: none;
+    }
+
+    #DepartureDate {
+        margin-left: 32px;
+        width: 150px;
+    }
+
+
+    .icons {
+        color: gray;
+        margin: 5px 15px;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+    }
+
+</style>
